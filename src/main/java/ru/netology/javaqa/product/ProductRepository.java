@@ -1,5 +1,6 @@
 package ru.netology.javaqa.product;
 import ru.netology.javaqa.domain.Product;
+import ru.netology.javaqa.exeptions.AlreadyExistsException;
 import ru.netology.javaqa.exeptions.NotFoundException;
 
 public class ProductRepository {
@@ -11,6 +12,10 @@ public class ProductRepository {
     }
 
     public void save(Product product) {
+
+        if (findById(product.getId()) != null) {
+            throw new AlreadyExistsException("Element with id: " + product.getId() + " already added");
+        }
         Product[] tmp = new Product[products.length + 1];
         System.arraycopy(products,0, tmp, 0, products.length);
         tmp[tmp.length - 1] = product;
@@ -18,7 +23,7 @@ public class ProductRepository {
     }
 
     public Product findById(int id) {
-        Product[] tmp = new Product[1];
+        Product[] tmp = new Product[products.length + 1];
         int copyToIndex = 0;
         for (Product product : products) {
             if (product.getId() == id) {

@@ -1,7 +1,5 @@
 package ru.netology.javaqa.product;
 import ru.netology.javaqa.domain.Product;
-import ru.netology.javaqa.domain.Book;
-import ru.netology.javaqa.domain.Smartphone;
 
 public class ProductManager {
 
